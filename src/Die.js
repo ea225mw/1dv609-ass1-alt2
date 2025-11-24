@@ -1,1 +1,3 @@
-export class Die {}
+export class Die {
+  roll() {}
+}
