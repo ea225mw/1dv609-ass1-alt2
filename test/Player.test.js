@@ -11,5 +11,7 @@ import {Player} from '../src/Player.js'
 */
 
 test("should return player's name", () => {
-  const player = new Player()
+  const player = new Player('Joe')
+  const name = player.getName()
+  expect(name).toBe('Joe')
 })
