@@ -1,0 +1,6 @@
+test('should return a number equal to or greater than 1', () => {
+  const die = new Die()
+})
+
+/*const value = die.roll()
+  expect(value).toBeGreaterThanOrEqualTo(1)*/
