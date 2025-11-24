@@ -1,5 +1,8 @@
 export class MenuHandler {
   handleMenuChoice(choice) {
-    return 'startGame'
+    switch (choice) {
+      case '1':
+        return 'startGame'
+    }
   }
 }
