@@ -1,0 +1,23 @@
+{
+  "name": "1dv609-ass1-alt2",
+  "version": "1.0.0",
+  "description": "A simple dice game with a banker that the players puts bids against.",
+  "homepage": "https://github.com/ea225mw/1dv609-ass1-alt2#readme",
+  "bugs": {
+    "url": "https://github.com/ea225mw/1dv609-ass1-alt2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ea225mw/1dv609-ass1-alt2.git"
+  },
+  "license": "ISC",
+  "author": "Emanuel Andersen",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
+}
