@@ -1,14 +1,14 @@
 export class Player {
-  name
+  #name
   #funds
 
   constructor(name) {
-    this.name = name
+    this.#name = name
     this.#funds = 500
   }
 
   getName() {
-    return this.name
+    return this.#name
   }
 
   getFunds() {
