@@ -2,14 +2,17 @@ import {Die} from '../src/Die.js'
 
 const die = new Die()
 
-test('should return a number equal to or greater than 1', () => {
+function rollAndGetValue() {
   die.roll()
-  const value = die.getFaceValue()
+  return die.getFaceValue()
+}
+
+test('should return a number equal to or greater than 1', () => {
+  const value = rollAndGetValue()
   expect(value).toBeGreaterThanOrEqual(1)
 })
 
 test('should return a number equal to or less than 6', () => {
-  die.roll()
-  const value = die.getFaceValue()
+  const value = rollAndGetValue()
   expect(value).toBeLessThanOrEqual(6)
 })
