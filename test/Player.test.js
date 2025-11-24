@@ -1,3 +1,5 @@
+import {Player} from '../src/Player.js'
+
 /*
 1. Return players name
 2. Amount of funds
