@@ -12,7 +12,7 @@ import {MenuHandler} from '../src/MenuHandler.js'*/
 5. Spelarna ska läggas till i arrayen PLAYERS
 */
 
-describe('tests with start menu choice 1', () => {
+describe('tests with start menu choice 1 (start game)', () => {
   const consoleUIMock = {
     printGameBanner: jest.fn(),
     printStartMenu: jest.fn().mockResolvedValue('1'),
@@ -34,5 +34,20 @@ describe('tests with start menu choice 1', () => {
     const handleMenuChoiceSpy = jest.spyOn(GameController.prototype, 'handleMenuChoice')
     await gameController.run()
     expect(handleMenuChoiceSpy).toHaveBeenCalledWith('1')
+  })
+})
+
+describe('tests with start menu choice 9 (quit)', () => {
+  const consoleUIMock = {
+    printGameBanner: jest.fn(),
+    printStartMenu: jest.fn().mockResolvedValue('9'),
+  }
+
+  const gameController = new GameController(consoleUIMock)
+
+  test('handleMenuChoice() should be called with "9" on menu choice 9', async () => {
+    const handleMenuChoiceSpy = jest.spyOn(GameController.prototype, 'handleMenuChoice')
+    await gameController.run()
+    expect(handleMenuChoiceSpy).toHaveBeenCalledWith('9')
   })
 })
