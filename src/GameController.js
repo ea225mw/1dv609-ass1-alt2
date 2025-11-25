@@ -7,5 +7,6 @@ export class GameController {
 
   run() {
     this.#consoleUI.printGameBanner()
+    this.#consoleUI.printStartMenu()
   }
 }
