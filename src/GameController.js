@@ -8,7 +8,13 @@ export class GameController {
   async run() {
     this.#consoleUI.printGameBanner()
     const choice = await this.#consoleUI.printStartMenu()
-    this.handleMenuChoice(choice)
+    const action = this.handleMenuChoice(choice)
+    if (action === 'startGame') {
+      //implement later
+    }
+    if (action === 'quitGame') {
+      this.quitGame()
+    }
   }
 
   handleMenuChoice(choice) {
@@ -19,4 +25,6 @@ export class GameController {
         return 'quitGame'
     }
   }
+
+  quitGame() {}
 }
