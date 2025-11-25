@@ -13,7 +13,7 @@ import {MenuHandler} from '../src/MenuHandler.js'
 */
 
 const mockConsole = {
-  printWelcome: jest.fn(),
+  printGameBanner: jest.fn(),
   printStartMenu: jest.fn().mockResolvedValue('1'),
 }
 
