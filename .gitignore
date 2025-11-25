@@ -200,5 +200,6 @@ $RECYCLE.BIN/
 
 # Misc
 projectTrash/
+temp/
 
 # End of https://www.toptal.com/developers/gitignore/api/node,linux,macos,windows,visualstudiocode
