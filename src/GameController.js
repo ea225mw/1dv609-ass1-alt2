@@ -53,7 +53,12 @@ export class GameController {
     3. Evaluate results
     4. Funds are reglated
      */
+    this.#players.forEach((player) => {
+      this.letPlayerPlaceBet(player)
+    })
   }
+
+  letPlayerPlaceBet(player) {}
 
   quitGame() {
     this.#consoleUI.printQuittingMessage()

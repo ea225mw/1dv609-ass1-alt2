@@ -70,7 +70,7 @@ describe('tests with start menu choice 1 (start game)', () => {
   })
 
   test('letPlayerPlceBet() should be called 2 times', async () => {
-    const spy = jest.spyOn(GameController.prototype, 'letPlayerPlaceBid')
+    const spy = jest.spyOn(GameController.prototype, 'letPlayerPlaceBet')
     await gameController.run()
     expect(spy).toHaveBeenCalledTimes(2)
   })
