@@ -29,7 +29,8 @@ test('should print start menu on startup', () => {
   expect(consoleUIMock.printStartMenu).toHaveBeenCalled()
 })
 
-test('should return "gameStart" on menu choice 1', () => {
-  gameController.run()
-  expect(gameController.handleMenuChoice).toHaveBeenCalled()
+test('handleMenuChoice() should be called with "1" on menu choice 1', async () => {
+  const handleMenuChoiceSpy = jest.spyOn(GameController.prototype, 'handleMenuChoice')
+  await gameController.run()
+  expect(handleMenuChoiceSpy).toHaveBeenCalledWith('1')
 })
