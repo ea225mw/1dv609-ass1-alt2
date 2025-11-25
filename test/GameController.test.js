@@ -49,7 +49,7 @@ describe('tests with start menu choice 1 (start game)', () => {
   test('should call createPlayers()', async () => {
     const spy = jest.spyOn(GameController.prototype, 'createPlayers')
     await gameController.run()
-    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalledTimes(2)
   })
 })
 
