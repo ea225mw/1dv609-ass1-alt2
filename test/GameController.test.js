@@ -50,4 +50,10 @@ describe('tests with start menu choice 9 (quit)', () => {
     await gameController.run()
     expect(handleMenuChoiceSpy).toHaveBeenCalledWith('9')
   })
+
+  test('should call quitGame() when user chooses to quit game', async () => {
+    const quitGameSpy = jest.spyOn(GameController.prototype, 'quitGame')
+    await gameController.run()
+    expect(quitGameSpy).toHaveBeenCalled()
+  })
 })
