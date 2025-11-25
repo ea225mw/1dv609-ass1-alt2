@@ -1,4 +1,4 @@
-import {describe, expect, jest} from '@jest/globals'
+import {beforeEach, describe, expect, jest} from '@jest/globals'
 import {GameController} from '../src/GameController.js'
 /*import {Player} from '../src/Player.js'
 import {ConsoleUI} from '../temp/ConsoleUI.js'
@@ -13,20 +13,24 @@ import {MenuHandler} from '../src/MenuHandler.js'*/
 */
 
 describe('tests with start menu choice 1 (start game)', () => {
-  const consoleUIMock = {
-    printGameBanner: jest.fn(),
-    printStartMenu: jest.fn().mockResolvedValue('1'),
-  }
+  let consoleUIMock
+  let gameController
 
-  const gameController = new GameController(consoleUIMock)
+  beforeEach(() => {
+    consoleUIMock = {
+      printGameBanner: jest.fn(),
+      printStartMenu: jest.fn().mockResolvedValue('1'),
+    }
+    gameController = new GameController(consoleUIMock)
+  })
 
-  test('should print game name banner on startup', () => {
-    gameController.run()
+  test('should print game name banner on startup', async () => {
+    await gameController.run()
     expect(consoleUIMock.printGameBanner).toHaveBeenCalled()
   })
 
-  test('should print start menu on startup', () => {
-    gameController.run()
+  test('should print start menu on startup', async () => {
+    await gameController.run()
     expect(consoleUIMock.printStartMenu).toHaveBeenCalled()
   })
 
@@ -38,12 +42,16 @@ describe('tests with start menu choice 1 (start game)', () => {
 })
 
 describe('tests with start menu choice 9 (quit)', () => {
-  const consoleUIMock = {
-    printGameBanner: jest.fn(),
-    printStartMenu: jest.fn().mockResolvedValue('9'),
-  }
+  let consoleUIMock
+  let gameController
 
-  const gameController = new GameController(consoleUIMock)
+  beforeEach(() => {
+    consoleUIMock = {
+      printGameBanner: jest.fn(),
+      printStartMenu: jest.fn().mockResolvedValue('9'),
+    }
+    gameController = new GameController(consoleUIMock)
+  })
 
   test('handleMenuChoice() should be called with "9" on menu choice 9', async () => {
     const handleMenuChoiceSpy = jest.spyOn(GameController.prototype, 'handleMenuChoice')
