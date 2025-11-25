@@ -1,4 +1,4 @@
-import {expect, jest} from '@jest/globals'
+import {describe, expect, jest} from '@jest/globals'
 import {GameController} from '../src/GameController.js'
 /*import {Player} from '../src/Player.js'
 import {ConsoleUI} from '../temp/ConsoleUI.js'
@@ -12,25 +12,27 @@ import {MenuHandler} from '../src/MenuHandler.js'*/
 5. Spelarna ska läggas till i arrayen PLAYERS
 */
 
-const consoleUIMock = {
-  printGameBanner: jest.fn(),
-  printStartMenu: jest.fn().mockResolvedValue('1'),
-}
+describe('tests with start menu choice 1', () => {
+  const consoleUIMock = {
+    printGameBanner: jest.fn(),
+    printStartMenu: jest.fn().mockResolvedValue('1'),
+  }
 
-const gameController = new GameController(consoleUIMock)
+  const gameController = new GameController(consoleUIMock)
 
-test('should print game name banner on startup', () => {
-  gameController.run()
-  expect(consoleUIMock.printGameBanner).toHaveBeenCalled()
-})
+  test('should print game name banner on startup', () => {
+    gameController.run()
+    expect(consoleUIMock.printGameBanner).toHaveBeenCalled()
+  })
 
-test('should print start menu on startup', () => {
-  gameController.run()
-  expect(consoleUIMock.printStartMenu).toHaveBeenCalled()
-})
+  test('should print start menu on startup', () => {
+    gameController.run()
+    expect(consoleUIMock.printStartMenu).toHaveBeenCalled()
+  })
 
-test('handleMenuChoice() should be called with "1" on menu choice 1', async () => {
-  const handleMenuChoiceSpy = jest.spyOn(GameController.prototype, 'handleMenuChoice')
-  await gameController.run()
-  expect(handleMenuChoiceSpy).toHaveBeenCalledWith('1')
+  test('handleMenuChoice() should be called with "1" on menu choice 1', async () => {
+    const handleMenuChoiceSpy = jest.spyOn(GameController.prototype, 'handleMenuChoice')
+    await gameController.run()
+    expect(handleMenuChoiceSpy).toHaveBeenCalledWith('1')
+  })
 })
