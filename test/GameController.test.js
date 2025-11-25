@@ -63,6 +63,11 @@ describe('tests with start menu choice 1 (start game)', () => {
     await gameController.run()
     expect(spy).toHaveBeenCalled()
   })
+
+  test('should create players using the factory', () => {
+    gameController.createPlayers(['John', 'Lisa'])
+    expect(factoryMock.create).toHaveBeenCalledTimes(2)
+  })
 })
 
 // ---------- TEST QUITTING GAME ------------------------------------------
@@ -92,13 +97,4 @@ describe('tests with start menu choice 9 (quit)', () => {
     await gameController.run()
     expect(quitGameSpy).toHaveBeenCalled()
   })
-})
-
-test('should create players using the factory', () => {
-  const factoryMock = {
-    create: jest.fn().mockReturnValue({mockPlayer: true}),
-  }
-  const gameController = new GameController({}, factoryMock)
-  gameController.createPlayers(['John', 'Lisa'])
-  expect(factoryMock.create).toHaveBeenCalledTimes(2)
 })
