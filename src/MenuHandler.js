@@ -3,6 +3,8 @@ export class MenuHandler {
     switch (choice) {
       case '1':
         return 'startGame'
+      case '9':
+        return 'quitGame'
     }
   }
 }
