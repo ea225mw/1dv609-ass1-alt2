@@ -15,7 +15,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "start": "node temp/index-test.js",
+    "debug": "node --inspect temp/index-test.js"
   },
   "devDependencies": {
     "jest": "^30.2.0"

@@ -1,26 +1,30 @@
 export class ConsoleUI {
-  #rl
+  rl
 
   constructor(rl) {
-    this.#rl = rl
+    this.rl = rl
   }
 
   printGameBanner() {
     console.log("\n=== Banker's Dice Game ===")
   }
 
+  printQuittingMessage() {
+    console.log('\nQuitting game.\n')
+  }
+
   async printStartMenu() {
     console.log('1) Start game')
     console.log('9) Exit')
 
-    const answer = await this.#rl.question(
+    const answer = await this.rl.question(
       'Choose an alternative from the menu. Type the corresponding number and press Enter. '
     )
     return answer
   }
 
   async promptForNumberOfPlayers() {
-    const numberOfPlayers = await this.#rl.question('How many players? ')
+    const numberOfPlayers = await this.rl.question('How many players? ')
     return numberOfPlayers
   }
 
@@ -28,8 +32,7 @@ export class ConsoleUI {
     let arrayWithNames = []
     let index = 1
     while (index <= numberOfPlayers) {
-      const name = await this.#rl.question(`Enter the name of player ${index}: `)
-      console.log(name)
+      const name = await this.rl.question(`Enter the name of player ${index}: `)
       arrayWithNames.push(name)
       index++
     }

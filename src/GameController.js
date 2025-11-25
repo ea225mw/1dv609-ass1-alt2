@@ -16,7 +16,7 @@ export class GameController {
       const action = this.handleMenuChoice(choice)
       if (action === 'startGame') {
         const numberOfPlayers = await this.#consoleUI.promptForNumberOfPlayers()
-        const arrayWithNames = this.#consoleUI.promptForPlayerNames(numberOfPlayers)
+        const arrayWithNames = await this.#consoleUI.promptForPlayerNames(numberOfPlayers)
         this.createPlayers(arrayWithNames)
 
         this.quitGame()
@@ -44,6 +44,8 @@ export class GameController {
   }
 
   quitGame() {
+    this.#consoleUI.printQuittingMessage()
     this.#isGameRunning = false
+    this.#consoleUI.rl.close()
   }
 }
