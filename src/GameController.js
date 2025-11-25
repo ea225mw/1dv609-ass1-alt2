@@ -14,6 +14,7 @@ export class GameController {
     while (this.#isGameRunning) {
       const choice = await this.#consoleUI.printStartMenu()
       const action = this.handleMenuChoice(choice)
+
       if (action === 'startGame') {
         const numberOfPlayers = await this.#consoleUI.promptForNumberOfPlayers()
         const arrayWithNames = await this.#consoleUI.promptForPlayerNames(numberOfPlayers)
@@ -22,6 +23,7 @@ export class GameController {
 
         this.quitGame()
       }
+
       if (action === 'quitGame') {
         this.quitGame()
       }
@@ -44,7 +46,14 @@ export class GameController {
     }
   }
 
-  handleGameRound() {}
+  handleGameRound() {
+    /*
+    1. Every player places a bet (#players.forEach((letPlayerPlaceBet())))
+    2. Banker rolls die
+    3. Evaluate results
+    4. Funds are reglated
+     */
+  }
 
   quitGame() {
     this.#consoleUI.printQuittingMessage()

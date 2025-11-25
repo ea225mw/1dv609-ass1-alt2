@@ -58,15 +58,21 @@ describe('tests with start menu choice 1 (start game)', () => {
     expect(consoleUIMock.promptForPlayerNames).toHaveBeenCalled()
   })
 
+  test('should create players using the factory', () => {
+    gameController.createPlayers(['John', 'Lisa'])
+    expect(factoryMock.create).toHaveBeenCalledTimes(2)
+  })
+
   test('startGameRound should be called', async () => {
     const spy = jest.spyOn(GameController.prototype, 'handleGameRound')
     await gameController.run()
     expect(spy).toHaveBeenCalled()
   })
 
-  test('should create players using the factory', () => {
-    gameController.createPlayers(['John', 'Lisa'])
-    expect(factoryMock.create).toHaveBeenCalledTimes(2)
+  test('letPlayerPlceBet() should be called 2 times', async () => {
+    const spy = jest.spyOn(GameController.prototype, 'letPlayerPlaceBid')
+    await gameController.run()
+    expect(spy).toHaveBeenCalledTimes(2)
   })
 })
 
