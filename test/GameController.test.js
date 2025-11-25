@@ -12,13 +12,19 @@ import {MenuHandler} from '../src/MenuHandler.js'
 
 */
 
-const ConsoleUIMock = {
+const consoleUIMock = {
   printGameBanner: jest.fn(),
   printStartMenu: jest.fn().mockResolvedValue('1'),
 }
 
 test('should print game name banner on startup', () => {
-  const gameController = new GameController(ConsoleUIMock)
+  const gameController = new GameController(consoleUIMock)
   gameController.run()
-  expect(ConsoleUIMock.printGameBanner).toHaveBeenCalled()
+  expect(consoleUIMock.printGameBanner).toHaveBeenCalled()
+})
+
+test('should print start menu on startup', () => {
+  const gameController = new GameController(consoleUIMock)
+  gameController.run()
+  expect(consoleUIMock.printStartMenu).toHaveBeenCalled()
 })
