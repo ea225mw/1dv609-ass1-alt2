@@ -21,7 +21,7 @@ test('promptForNumberOfPlayers should return 3', async () => {
   expect(result).toBe('3')
 })
 
-test('promptForPlayerNames() returns two names', async () => {
+test('promptForPlayerNames() should return two names', async () => {
   const rlMock = {
     question: jest.fn().mockResolvedValueOnce('John').mockResolvedValueOnce('Lisa'),
   }
