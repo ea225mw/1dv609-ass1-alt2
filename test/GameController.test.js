@@ -1,4 +1,4 @@
-import {jest} from '@jest/globals'
+import {expect, jest} from '@jest/globals'
 import {GameController} from '../src/GameController.js'
 /*import {Player} from '../src/Player.js'
 import {ConsoleUI} from '../temp/ConsoleUI.js'
@@ -27,4 +27,9 @@ test('should print game name banner on startup', () => {
 test('should print start menu on startup', () => {
   gameController.run()
   expect(consoleUIMock.printStartMenu).toHaveBeenCalled()
+})
+
+test('should return "gameStart" on menu choice 1', () => {
+  gameController.run()
+  expect(gameController.handleMenuChoice).toHaveBeenCalled()
 })
