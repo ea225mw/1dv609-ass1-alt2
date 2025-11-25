@@ -32,3 +32,12 @@ test('promptForPlayerNames() should return two names', async () => {
   expect(result).toEqual(['John', 'Lisa'])
   expect(rlMock.question).toHaveBeenCalledTimes(2)
 })
+
+test('closeInterface() should be called', () => {
+  const rlMock = {
+    close: jest.fn(),
+  }
+  const consoleUI = new ConsoleUI(rlMock)
+  consoleUI.closeInterface()
+  expect(rlMock.close).toHaveBeenCalled()
+})

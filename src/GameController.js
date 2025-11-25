@@ -46,6 +46,6 @@ export class GameController {
   quitGame() {
     this.#consoleUI.printQuittingMessage()
     this.#isGameRunning = false
-    this.#consoleUI.rl.close()
+    this.#consoleUI.closeInterface()
   }
 }

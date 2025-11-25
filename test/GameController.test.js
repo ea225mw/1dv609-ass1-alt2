@@ -15,15 +15,21 @@ import {MenuHandler} from '../src/MenuHandler.js'*/
 describe('tests with start menu choice 1 (start game)', () => {
   let consoleUIMock
   let gameController
+  let factoryMock
 
   beforeEach(() => {
     consoleUIMock = {
       printGameBanner: jest.fn(),
       printStartMenu: jest.fn().mockResolvedValue('1'),
+      printQuittingMessage: jest.fn(),
       promptForNumberOfPlayers: jest.fn().mockResolvedValue('2'),
       promptForPlayerNames: jest.fn().mockResolvedValue(['John', 'Lisa']),
+      closeInterface: jest.fn(),
     }
-    gameController = new GameController(consoleUIMock)
+    factoryMock = {
+      create: jest.fn().mockReturnValue({mockPlayer: true}),
+    }
+    gameController = new GameController(consoleUIMock, factoryMock)
   })
 
   test('should print game name banner on startup', async () => {
@@ -51,6 +57,12 @@ describe('tests with start menu choice 1 (start game)', () => {
     await gameController.run()
     expect(consoleUIMock.promptForPlayerNames).toHaveBeenCalled()
   })
+
+  test('startGameRound should be called', async () => {
+    const spy = jest.spyOn(GameController.prototype, 'handleGameRound')
+    await gameController.run()
+    expect(spy).toHaveBeenCalled()
+  })
 })
 
 // ---------- TEST QUITTING GAME ------------------------------------------
@@ -63,6 +75,8 @@ describe('tests with start menu choice 9 (quit)', () => {
     consoleUIMock = {
       printGameBanner: jest.fn(),
       printStartMenu: jest.fn().mockResolvedValue('9'),
+      printQuittingMessage: jest.fn(),
+      closeInterface: jest.fn(),
     }
     gameController = new GameController(consoleUIMock)
   })
