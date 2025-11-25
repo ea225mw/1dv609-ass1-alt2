@@ -1,4 +1,4 @@
-import {PlayerFactory} from '..src/PlayerFactory.js'
+import {PlayerFactory} from '../src/PlayerFactory.js'
 
 test('should return a player object', () => {
   const factory = new PlayerFactory()
