@@ -1,7 +1,7 @@
 import {jest} from '@jest/globals'
 import {GameController} from '../src/GameController.js'
 import {Player} from '../src/Player.js'
-import {MyConsole} from '../temp/MyConsole.js'
+import {ConsoleUI} from '../temp/ConsoleUI.js'
 import {MenuHandler} from '../src/MenuHandler.js'
 /* 
 1. Visa startmenyn
@@ -12,26 +12,13 @@ import {MenuHandler} from '../src/MenuHandler.js'
 
 */
 
-const mockConsole = {
+const ConsoleUIMock = {
   printGameBanner: jest.fn(),
   printStartMenu: jest.fn().mockResolvedValue('1'),
 }
 
 test('should print game name banner on startup', () => {
-  const gameController = new GameController(mockConsole)
+  const gameController = new GameController(ConsoleUIMock)
   gameController.run()
-  expect(mockConsole.printGameBanner).toHaveBeenCalled()
+  expect(ConsoleUIMock.printGameBanner).toHaveBeenCalled()
 })
-
-/*
-
-test('should print game banner on startup', async () => {
-    const mockConsole = {
-    printWelcome: jest.fn(),
-    printStartMenu: jest.fn().mockResolvedValue('1')
-  }
-  const menuHandler = new MenuHandler()
-  const myConsole = new MyConsole(menuHandler)
-  const gameController = new GameController(myConsole)
-  gameController.run()
-})*/

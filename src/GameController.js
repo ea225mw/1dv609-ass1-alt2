@@ -1,11 +1,11 @@
 export class GameController {
-  #myConsole
+  #consoleUI
 
-  constructor(myConsole) {
-    this.#myConsole = myConsole
+  constructor(consoleUI) {
+    this.#consoleUI = consoleUI
   }
 
   run() {
-    this.#myConsole.printGameBanner()
+    this.#consoleUI.printGameBanner()
   }
 }
