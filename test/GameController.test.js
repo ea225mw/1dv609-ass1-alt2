@@ -45,9 +45,15 @@ describe('tests with start menu choice 1 (start game)', () => {
     await gameController.run()
     expect(consoleUIMock.promptForNumberOfPlayers).toHaveBeenCalled()
   })
+
+  test('should call createPlayers()', async () => {
+    const spy = jest.spyOn(GameController.prototype, 'createPlayers')
+    await gameController.run()
+    expect(spy).toHaveBeenCalled()
+  })
 })
 
-// ----------------------------------------------------------------------------------------------
+// ---------- TEST QUITTING GAME ------------------------------------------
 
 describe('tests with start menu choice 9 (quit)', () => {
   let consoleUIMock
