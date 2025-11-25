@@ -18,6 +18,7 @@ export class GameController {
         const numberOfPlayers = await this.#consoleUI.promptForNumberOfPlayers()
         const arrayWithNames = await this.#consoleUI.promptForPlayerNames(numberOfPlayers)
         this.createPlayers(arrayWithNames)
+        this.handleGameRound()
 
         this.quitGame()
       }
@@ -42,6 +43,8 @@ export class GameController {
       this.#players.push(player)
     }
   }
+
+  handleGameRound() {}
 
   quitGame() {
     this.#consoleUI.printQuittingMessage()
