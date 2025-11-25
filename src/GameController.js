@@ -1,9 +1,12 @@
 export class GameController {
   #consoleUI
+  #playerFactory
+  #players = []
   #isGameRunning = true
 
-  constructor(consoleUI) {
+  constructor(consoleUI, playerFactory) {
     this.#consoleUI = consoleUI
+    this.#playerFactory = playerFactory
   }
 
   async run() {
@@ -13,11 +16,9 @@ export class GameController {
       const action = this.handleMenuChoice(choice)
       if (action === 'startGame') {
         const numberOfPlayers = await this.#consoleUI.promptForNumberOfPlayers()
+        const arrayWithNames = this.#consoleUI.promptForPlayerNames(numberOfPlayers)
+        this.createPlayers(arrayWithNames)
 
-        for (let i = 0; i < numberOfPlayers; i++) {
-          this.createPlayers()
-        }
-        //more implement later, for now let's quit:
         this.quitGame()
       }
       if (action === 'quitGame') {
@@ -35,7 +36,12 @@ export class GameController {
     }
   }
 
-  createPlayers(numberOfPlayers) {}
+  createPlayers(arrayWithNames) {
+    for (let i = 0; i < arrayWithNames.length; i++) {
+      const player = this.#playerFactory.create(arrayWithNames[i])
+      this.#players.push(player)
+    }
+  }
 
   quitGame() {
     this.#isGameRunning = false

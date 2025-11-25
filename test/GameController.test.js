@@ -21,6 +21,7 @@ describe('tests with start menu choice 1 (start game)', () => {
       printGameBanner: jest.fn(),
       printStartMenu: jest.fn().mockResolvedValue('1'),
       promptForNumberOfPlayers: jest.fn().mockResolvedValue('2'),
+      promptForPlayerNames: jest.fn().mockResolvedValue(['John', 'Lisa']),
     }
     gameController = new GameController(consoleUIMock)
   })
@@ -46,10 +47,9 @@ describe('tests with start menu choice 1 (start game)', () => {
     expect(consoleUIMock.promptForNumberOfPlayers).toHaveBeenCalled()
   })
 
-  test('should call createPlayers()', async () => {
-    const spy = jest.spyOn(GameController.prototype, 'createPlayers')
+  test('should call promptForPlayerNames()', async () => {
     await gameController.run()
-    expect(spy).toHaveBeenCalledTimes(2)
+    expect(consoleUIMock.promptForPlayerNames).toHaveBeenCalled()
   })
 })
 
