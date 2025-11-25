@@ -6,7 +6,7 @@ export class ConsoleUI {
   }
 
   printGameBanner() {
-    console.log('\n=== Bankirspelet ===')
+    console.log("\n=== Banker's Dice Game ===")
   }
 
   async printStartMenu() {

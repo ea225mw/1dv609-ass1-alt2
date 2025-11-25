@@ -1,0 +1,34 @@
+import {jest, test} from '@jest/globals'
+import {ConsoleUI} from '../src/ConsoleUI.js'
+
+test('printStartMenu() should return 1', async () => {
+  const rlMock = {
+    question: jest.fn().mockResolvedValue('1'),
+  }
+  const consoleUI = new ConsoleUI(rlMock)
+  const result = await consoleUI.printStartMenu()
+
+  expect(result).toBe('1')
+})
+
+test('promptForNumberOfPlayers should return 3', async () => {
+  const rlMock = {
+    question: jest.fn().mockResolvedValue('3'),
+  }
+  const consoleUI = new ConsoleUI(rlMock)
+  const result = await consoleUI.promptForNumberOfPlayers()
+
+  expect(result).toBe('3')
+})
+
+test('promptForPlayerNames() returns two names', async () => {
+  const rlMock = {
+    question: jest.fn().mockResolvedValueOnce('John').mockResolvedValueOnce('Lisa'),
+  }
+
+  const consoleUI = new ConsoleUI(rlMock)
+  const result = await consoleUI.promptForPlayerNames(2)
+
+  expect(result).toEqual(['John', 'Lisa'])
+  expect(rlMock.question).toHaveBeenCalledTimes(2)
+})
