@@ -1,6 +1,6 @@
 export class GameController {
   #consoleUI
-  #isGameActive = true
+  #isGameRunning = true
 
   constructor(consoleUI) {
     this.#consoleUI = consoleUI
@@ -8,7 +8,7 @@ export class GameController {
 
   async run() {
     this.#consoleUI.printGameBanner()
-    while (this.#isGameActive) {
+    while (this.#isGameRunning) {
       const choice = await this.#consoleUI.printStartMenu()
       const action = this.handleMenuChoice(choice)
       if (action === 'startGame') {
@@ -31,6 +31,6 @@ export class GameController {
   }
 
   quitGame() {
-    this.#isGameActive = false
+    this.#isGameRunning = false
   }
 }

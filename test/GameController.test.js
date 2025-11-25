@@ -20,6 +20,7 @@ describe('tests with start menu choice 1 (start game)', () => {
     consoleUIMock = {
       printGameBanner: jest.fn(),
       printStartMenu: jest.fn().mockResolvedValue('1'),
+      promptForNumberOfPlayers: jest.fn().mockResolvedValue('2'),
     }
     gameController = new GameController(consoleUIMock)
   })
@@ -34,12 +35,19 @@ describe('tests with start menu choice 1 (start game)', () => {
     expect(consoleUIMock.printStartMenu).toHaveBeenCalled()
   })
 
-  test('handleMenuChoice() should be called with "1" on menu choice 1', async () => {
+  test('should call handleMenuChoice() with "1" on menu choice 1', async () => {
     const handleMenuChoiceSpy = jest.spyOn(GameController.prototype, 'handleMenuChoice')
     await gameController.run()
     expect(handleMenuChoiceSpy).toHaveBeenCalledWith('1')
   })
+
+  test('should call promptForNumberOfPlayers', async () => {
+    await gameController.run()
+    expect(consoleUIMock.promptForNumberOfPlayers).toHaveBeenCalled()
+  })
 })
+
+// ----------------------------------------------------------------------------------------------
 
 describe('tests with start menu choice 9 (quit)', () => {
   let consoleUIMock
@@ -53,7 +61,7 @@ describe('tests with start menu choice 9 (quit)', () => {
     gameController = new GameController(consoleUIMock)
   })
 
-  test('handleMenuChoice() should be called with "9" on menu choice 9', async () => {
+  test('should call handleMenuChoice() with "9" on menu choice 9', async () => {
     const handleMenuChoiceSpy = jest.spyOn(GameController.prototype, 'handleMenuChoice')
     await gameController.run()
     expect(handleMenuChoiceSpy).toHaveBeenCalledWith('9')
