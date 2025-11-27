@@ -69,6 +69,7 @@ describe('tests game rounds', () => {
   let consoleUIMock
   let gameController
   let factoryMock
+  let playerMock
 
   beforeEach(() => {
     consoleUIMock = {
@@ -81,6 +82,9 @@ describe('tests game rounds', () => {
     }
     factoryMock = {
       create: jest.fn().mockReturnValue({mockPlayer: true}),
+    }
+    playerMock = {
+      currentBet: jest.fn().mockReturnValue('20'),
     }
     gameController = new GameController(consoleUIMock, factoryMock)
   })
@@ -95,6 +99,10 @@ describe('tests game rounds', () => {
     const spy = jest.spyOn(GameController.prototype, 'letPlayerPlaceBet')
     await gameController.run()
     expect(spy).toHaveBeenCalledTimes(2)
+  })
+
+  test('should return 20 when a player placing a bet of 20', () => {
+    expect(gameController.letPlayerPlaceBet(playerMock)).toBe('20')
   })
 })
 
