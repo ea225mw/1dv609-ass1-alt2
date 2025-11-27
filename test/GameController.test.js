@@ -12,7 +12,7 @@ import {MenuHandler} from '../src/MenuHandler.js'*/
 5. Spelarna ska läggas till i arrayen PLAYERS
 */
 
-describe('tests with start menu choice 1 (start game)', () => {
+describe('tests for the startup of the game', () => {
   let consoleUIMock
   let gameController
   let factoryMock
@@ -61,6 +61,28 @@ describe('tests with start menu choice 1 (start game)', () => {
   test('should create players using the factory', () => {
     gameController.createPlayers(['John', 'Lisa'])
     expect(factoryMock.create).toHaveBeenCalledTimes(2)
+  })
+})
+
+// --------------------------------
+describe('tests game rounds', () => {
+  let consoleUIMock
+  let gameController
+  let factoryMock
+
+  beforeEach(() => {
+    consoleUIMock = {
+      printGameBanner: jest.fn(),
+      printStartMenu: jest.fn().mockResolvedValue('1'),
+      printQuittingMessage: jest.fn(),
+      promptForNumberOfPlayers: jest.fn().mockResolvedValue('2'),
+      promptForPlayerNames: jest.fn().mockResolvedValue(['John', 'Lisa']),
+      closeInterface: jest.fn(),
+    }
+    factoryMock = {
+      create: jest.fn().mockReturnValue({mockPlayer: true}),
+    }
+    gameController = new GameController(consoleUIMock, factoryMock)
   })
 
   test('startGameRound should be called', async () => {
