@@ -9,4 +9,8 @@ export class Banker {
   getName() {
     return this.#name
   }
+
+  rollDie() {
+    return this.#die.roll()
+  }
 }
