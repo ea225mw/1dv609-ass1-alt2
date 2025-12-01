@@ -1,16 +1,5 @@
 import {beforeEach, describe, expect, jest} from '@jest/globals'
 import {GameController} from '../src/GameController.js'
-/*import {Player} from '../src/Player.js'
-import {ConsoleUI} from '../temp/ConsoleUI.js'
-import {MenuHandler} from '../src/MenuHandler.js'*/
-
-/* 
-1. Visa startmenyn
-2. Välja starta spelet
-3. Ange antal spelare
-4. Skriva in alla spelares namn och skapa upp spelarobjekt med tillhörande tärningar.
-5. Spelarna ska läggas till i arrayen PLAYERS
-*/
 
 describe('tests for the startup of the game', () => {
   let consoleUIMock
