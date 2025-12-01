@@ -96,6 +96,12 @@ describe('tests game rounds', () => {
     await gameController.letPlayerPlaceBet(playerMock)
     expect(playerMock.currentBet).toBe('20')
   })
+
+  test('should call letBankerRollDie()', async () => {
+    const spy = jest.spyOn(GameController.prototype, 'letBankerRollDie')
+    await gameController.run()
+    expect(spy).toHaveBeenCalled()
+  })
 })
 
 // ---------- TEST QUITTING GAME ------------------------------------------
