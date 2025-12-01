@@ -1,6 +1,7 @@
 export class Player {
   #name
   #funds
+  currentBet
 
   constructor(name) {
     this.#name = name

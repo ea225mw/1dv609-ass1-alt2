@@ -24,6 +24,7 @@ describe('tests for the startup of the game', () => {
       printQuittingMessage: jest.fn(),
       promptForNumberOfPlayers: jest.fn().mockResolvedValue('2'),
       promptForPlayerNames: jest.fn().mockResolvedValue(['John', 'Lisa']),
+      promptForBet: jest.fn().mockReturnValue('20'),
       closeInterface: jest.fn(),
     }
     factoryMock = {
@@ -78,13 +79,14 @@ describe('tests game rounds', () => {
       printQuittingMessage: jest.fn(),
       promptForNumberOfPlayers: jest.fn().mockResolvedValue('2'),
       promptForPlayerNames: jest.fn().mockResolvedValue(['John', 'Lisa']),
+      promptForBet: jest.fn().mockReturnValue('20'),
       closeInterface: jest.fn(),
     }
     factoryMock = {
       create: jest.fn().mockReturnValue({mockPlayer: true}),
     }
     playerMock = {
-      currentBet: jest.fn().mockReturnValue('20'),
+      currentBet: 0,
     }
     gameController = new GameController(consoleUIMock, factoryMock)
   })
@@ -101,8 +103,9 @@ describe('tests game rounds', () => {
     expect(spy).toHaveBeenCalledTimes(2)
   })
 
-  test('should return 20 when a player placing a bet of 20', () => {
-    expect(gameController.letPlayerPlaceBet(playerMock)).toBe('20')
+  test('should return 20 when a player placing a bet of 20', async () => {
+    const playerCurrentBet = await gameController.letPlayerPlaceBet(playerMock)
+    expect(playerCurrentBet).toBe('20')
   })
 })
 
@@ -117,6 +120,9 @@ describe('tests with start menu choice 9 (quit)', () => {
       printGameBanner: jest.fn(),
       printStartMenu: jest.fn().mockResolvedValue('9'),
       printQuittingMessage: jest.fn(),
+      promptForNumberOfPlayers: jest.fn().mockResolvedValue('2'),
+      promptForPlayerNames: jest.fn().mockResolvedValue(['John', 'Lisa']),
+      promptForBet: jest.fn().mockReturnValue('20'),
       closeInterface: jest.fn(),
     }
     gameController = new GameController(consoleUIMock)

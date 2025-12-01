@@ -19,7 +19,7 @@ export class GameController {
         const numberOfPlayers = await this.#consoleUI.promptForNumberOfPlayers()
         const arrayWithNames = await this.#consoleUI.promptForPlayerNames(numberOfPlayers)
         this.createPlayers(arrayWithNames)
-        this.handleGameRound()
+        await this.handleGameRound()
 
         this.quitGame()
       }
@@ -46,19 +46,23 @@ export class GameController {
     }
   }
 
-  handleGameRound() {
+  async handleGameRound() {
     /*
     1. Every player places a bet (#players.forEach((letPlayerPlaceBet())))
     2. Banker rolls die
     3. Evaluate results
     4. Funds are reglated
      */
-    this.#players.forEach((player) => {
-      this.letPlayerPlaceBet(player)
-    })
+    for (const player of this.#players) {
+      await this.letPlayerPlaceBet(player)
+    }
   }
 
-  letPlayerPlaceBet(player) {}
+  async letPlayerPlaceBet(player) {
+    const bet = await this.#consoleUI.promptForBet(player)
+    player.currentBet = bet
+    return player.currentBet
+  }
 
   quitGame() {
     this.#consoleUI.printQuittingMessage()

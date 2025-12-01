@@ -39,6 +39,12 @@ export class ConsoleUI {
     return arrayWithNames
   }
 
+  async promptForBet(player) {
+    console.log(`${player.getName()}, your funds are ${player.getFunds()}.`)
+    const bet = await this.rl.question('Place your bet:\n')
+    return bet
+  }
+
   closeInterface() {
     this.rl.close()
   }
