@@ -3,10 +3,12 @@ export class GameController {
   #playerFactory
   #players = []
   #isGameRunning = true
+  #banker
 
-  constructor(consoleUI, playerFactory) {
+  constructor(consoleUI, playerFactory, banker) {
     this.#consoleUI = consoleUI
     this.#playerFactory = playerFactory
+    this.#banker = banker
   }
 
   async run() {
@@ -56,11 +58,16 @@ export class GameController {
     for (const player of this.#players) {
       await this.letPlayerPlaceBet(player)
     }
+    const bankersFaceValue = this.letBankerRollDie()
   }
 
   async letPlayerPlaceBet(player) {
     const bet = await this.#consoleUI.promptForBet(player)
     player.currentBet = bet
+  }
+
+  letBankerRollDie() {
+    return this.#banker.rollDie()
   }
 
   quitGame() {

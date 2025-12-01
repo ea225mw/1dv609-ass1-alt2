@@ -5,6 +5,7 @@ describe('tests for the startup of the game', () => {
   let consoleUIMock
   let gameController
   let factoryMock
+  let bankerMock
 
   beforeEach(() => {
     consoleUIMock = {
@@ -19,7 +20,10 @@ describe('tests for the startup of the game', () => {
     factoryMock = {
       create: jest.fn().mockReturnValue({mockPlayer: true}),
     }
-    gameController = new GameController(consoleUIMock, factoryMock)
+    bankerMock = {
+      rollDie: jest.fn().mockReturnValue(3),
+    }
+    gameController = new GameController(consoleUIMock, factoryMock, bankerMock)
   })
 
   test('should print game name banner on startup', async () => {
@@ -60,6 +64,7 @@ describe('tests game rounds', () => {
   let gameController
   let factoryMock
   let playerMock
+  let bankerMock
 
   beforeEach(() => {
     consoleUIMock = {
@@ -77,7 +82,10 @@ describe('tests game rounds', () => {
     playerMock = {
       currentBet: 0,
     }
-    gameController = new GameController(consoleUIMock, factoryMock)
+    bankerMock = {
+      rollDie: jest.fn().mockReturnValue(3),
+    }
+    gameController = new GameController(consoleUIMock, factoryMock, bankerMock)
   })
 
   test('startGameRound should be called', async () => {
@@ -109,6 +117,7 @@ describe('tests game rounds', () => {
 describe('tests with start menu choice 9 (quit)', () => {
   let consoleUIMock
   let gameController
+  let bankerMock
 
   beforeEach(() => {
     consoleUIMock = {
@@ -120,7 +129,10 @@ describe('tests with start menu choice 9 (quit)', () => {
       promptForBet: jest.fn().mockReturnValue('20'),
       closeInterface: jest.fn(),
     }
-    gameController = new GameController(consoleUIMock)
+    bankerMock = {
+      rollDie: jest.fn().mockReturnValue(3),
+    }
+    gameController = new GameController(consoleUIMock, {}, bankerMock)
   })
 
   test('should call handleMenuChoice() with "9" on menu choice 9', async () => {
