@@ -61,7 +61,6 @@ export class GameController {
   async letPlayerPlaceBet(player) {
     const bet = await this.#consoleUI.promptForBet(player)
     player.currentBet = bet
-    return player.currentBet
   }
 
   quitGame() {

@@ -104,8 +104,8 @@ describe('tests game rounds', () => {
   })
 
   test('should return 20 when a player placing a bet of 20', async () => {
-    const playerCurrentBet = await gameController.letPlayerPlaceBet(playerMock)
-    expect(playerCurrentBet).toBe('20')
+    await gameController.letPlayerPlaceBet(playerMock)
+    expect(playerMock.currentBet).toBe('20')
   })
 })
 
