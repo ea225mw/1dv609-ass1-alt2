@@ -1,4 +1,4 @@
-import {jest, test} from '@jest/globals'
+import {beforeEach, jest, test} from '@jest/globals'
 import {ConsoleUI} from '../src/ConsoleUI.js'
 
 test('printStartMenu() should return 1', async () => {
@@ -31,6 +31,21 @@ test('promptForPlayerNames() should return two names', async () => {
 
   expect(result).toEqual(['John', 'Lisa'])
   expect(rlMock.question).toHaveBeenCalledTimes(2)
+})
+
+test('promptForBet() should return 20', async () => {
+  const playerMock = {
+    getName: jest.fn().mockResolvedValue('John'),
+    getFunds: jest.fn().mockReturnValue(200),
+  }
+  const rlMock = {
+    question: jest.fn().mockResolvedValueOnce('20'),
+  }
+
+  const consoleUI = new ConsoleUI(rlMock)
+  const result = await consoleUI.promptForBet(playerMock)
+
+  expect(result).toBe('20')
 })
 
 test('closeInterface() should be called', () => {
