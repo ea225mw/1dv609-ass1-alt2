@@ -75,6 +75,7 @@ describe('tests game rounds', () => {
       promptForPlayerNames: jest.fn().mockResolvedValue(['John', 'Lisa']),
       promptForBet: jest.fn().mockReturnValue('20'),
       closeInterface: jest.fn(),
+      printBankersDieFaceValue: jest.fn(),
     }
     factoryMock = {
       create: jest.fn().mockReturnValue({mockPlayer: true}),
@@ -115,6 +116,10 @@ describe('tests game rounds', () => {
     const spy = jest.spyOn(GameController.prototype, 'printBankersDieFaceValue')
     await gameController.run()
     expect(spy).toHaveBeenCalledWith(3)
+  })
+
+  test('should call printBankersDieFaceValue() in ConsoleUI', async () => {
+    expect(consoleUIMock.printBankersDieFaceValue).toHaveBeenCalledWith(3)
   })
 })
 
