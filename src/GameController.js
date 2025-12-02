@@ -71,7 +71,9 @@ export class GameController {
     return this.#banker.rollDie()
   }
 
-  printBankersDieFaceValue(faceValue) {}
+  printBankersDieFaceValue(faceValue) {
+    this.#consoleUI.printBankersDieFaceValue(faceValue)
+  }
 
   quitGame() {
     this.#consoleUI.printQuittingMessage()

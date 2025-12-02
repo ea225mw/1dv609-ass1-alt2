@@ -40,9 +40,13 @@ export class ConsoleUI {
   }
 
   async promptForBet(player) {
-    console.log(`${player.getName()}, your funds are ${player.getFunds()}.`)
+    console.log(`\n${player.getName()}, your funds are ${player.getFunds()}.`)
     const bet = await this.rl.question('Place your bet:\n')
     return bet
+  }
+
+  printBankersDieFaceValue(faceValue) {
+    console.log(`\nBanker rolls the die... ...and the value is: ${faceValue}\n`)
   }
 
   closeInterface() {

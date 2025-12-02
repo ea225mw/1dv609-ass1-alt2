@@ -16,6 +16,7 @@ describe('tests for the startup of the game', () => {
       promptForPlayerNames: jest.fn().mockResolvedValue(['John', 'Lisa']),
       promptForBet: jest.fn().mockReturnValue('20'),
       closeInterface: jest.fn(),
+      printBankersDieFaceValue: jest.fn(),
     }
     factoryMock = {
       create: jest.fn().mockReturnValue({mockPlayer: true}),
@@ -119,6 +120,7 @@ describe('tests game rounds', () => {
   })
 
   test('should call printBankersDieFaceValue() in ConsoleUI', async () => {
+    await gameController.run()
     expect(consoleUIMock.printBankersDieFaceValue).toHaveBeenCalledWith(3)
   })
 })
@@ -139,6 +141,7 @@ describe('tests with start menu choice 9 (quit)', () => {
       promptForPlayerNames: jest.fn().mockResolvedValue(['John', 'Lisa']),
       promptForBet: jest.fn().mockReturnValue('20'),
       closeInterface: jest.fn(),
+      printBankersDieFaceValue: jest.fn(),
     }
     bankerMock = {
       rollDie: jest.fn().mockReturnValue(3),
