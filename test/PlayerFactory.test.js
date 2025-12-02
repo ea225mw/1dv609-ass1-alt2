@@ -1,5 +1,4 @@
 import {jest, test} from '@jest/globals'
-import {Die} from '../src/Die.js'
 import {PlayerFactory} from '../src/PlayerFactory.js'
 
 test('should return a player object', () => {
