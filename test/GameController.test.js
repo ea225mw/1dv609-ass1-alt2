@@ -111,10 +111,10 @@ describe('tests game rounds', () => {
     expect(spy).toHaveBeenCalled()
   })
 
-  test('should call printBankersDieFaceValue() in ConsoleUI', async () => {
+  test('should call printBankersDieFaceValue() with 3', async () => {
     const spy = jest.spyOn(GameController.prototype, 'printBankersDieFaceValue')
     await gameController.run()
-    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalledWith(3)
   })
 })
 
