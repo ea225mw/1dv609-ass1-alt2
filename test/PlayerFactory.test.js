@@ -9,7 +9,7 @@ test('should return a player object', () => {
   expect(player.getName()).toBe('John')
 })
 
-test('should make player roll the die, returning 3', () => {
+test('should make player roll the die, returning 4', () => {
   const die = {
     roll: jest.fn().mockReturnValue(4),
   }

@@ -1,11 +1,13 @@
 export class Player {
   #name
   #funds
+  #die
   currentBet
 
-  constructor(name) {
+  constructor(name, die) {
     this.#name = name
     this.#funds = 500
+    this.#die = die
   }
 
   getName() {
@@ -14,5 +16,9 @@ export class Player {
 
   getFunds() {
     return this.#funds
+  }
+
+  roll() {
+    return this.#die.roll()
   }
 }

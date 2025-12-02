@@ -1,7 +1,7 @@
 import {Player} from './Player.js'
 
 export class PlayerFactory {
-  create(name) {
-    return new Player(name)
+  create(name, die) {
+    return new Player(name, die)
   }
 }
