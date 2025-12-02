@@ -59,6 +59,7 @@ export class GameController {
       await this.letPlayerPlaceBet(player)
     }
     const bankersFaceValue = this.letBankerRollDie()
+    this.printBankersDieFaceValue(bankersFaceValue)
   }
 
   async letPlayerPlaceBet(player) {
@@ -69,6 +70,8 @@ export class GameController {
   letBankerRollDie() {
     return this.#banker.rollDie()
   }
+
+  printBankersDieFaceValue(faceValue) {}
 
   quitGame() {
     this.#consoleUI.printQuittingMessage()
