@@ -76,7 +76,11 @@ export class GameController {
     this.#consoleUI.printBankersDieFaceValue(faceValue)
   }
 
-  letPlayersRollDie() {}
+  letPlayersRollDie() {
+    // 1. ConsoleUI.offerPlayerToRollDie()
+    // 2. Evaluate if it's a win or lose.
+    // 3.
+  }
 
   quitGame() {
     this.#consoleUI.printQuittingMessage()
