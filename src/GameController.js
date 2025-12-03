@@ -4,11 +4,13 @@ export class GameController {
   #players = []
   #isGameRunning = true
   #banker
+  #dieFactory
 
-  constructor(consoleUI, playerFactory, banker) {
+  constructor(consoleUI, playerFactory, banker, dieFactory) {
     this.#consoleUI = consoleUI
     this.#playerFactory = playerFactory
     this.#banker = banker
+    this.#dieFactory = dieFactory
   }
 
   async run() {
@@ -43,7 +45,8 @@ export class GameController {
 
   createPlayers(arrayWithNames) {
     for (let i = 0; i < arrayWithNames.length; i++) {
-      const player = this.#playerFactory.create(arrayWithNames[i])
+      const playersDie = this.#dieFactory.create()
+      const player = this.#playerFactory.create(arrayWithNames[i], playersDie)
       this.#players.push(player)
     }
   }

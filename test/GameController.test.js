@@ -1,11 +1,13 @@
 import {beforeEach, describe, expect, jest} from '@jest/globals'
 import {GameController} from '../src/GameController.js'
 
+let bankerMock = {rollDie: jest.fn().mockReturnValue(3)}
+let dieFactory = {create: jest.fn().mockReturnValue({dieMock: true})}
+
 describe('tests for the startup of the game', () => {
   let consoleUIMock
   let gameController
   let factoryMock
-  let bankerMock
 
   beforeEach(() => {
     consoleUIMock = {
@@ -21,10 +23,7 @@ describe('tests for the startup of the game', () => {
     factoryMock = {
       create: jest.fn().mockReturnValue({mockPlayer: true}),
     }
-    bankerMock = {
-      rollDie: jest.fn().mockReturnValue(3),
-    }
-    gameController = new GameController(consoleUIMock, factoryMock, bankerMock)
+    gameController = new GameController(consoleUIMock, factoryMock, bankerMock, dieFactory)
   })
 
   test('should print game name banner on startup', async () => {
@@ -65,7 +64,6 @@ describe('tests game rounds', () => {
   let gameController
   let factoryMock
   let playerMock
-  let bankerMock
 
   beforeEach(() => {
     consoleUIMock = {
@@ -84,10 +82,7 @@ describe('tests game rounds', () => {
     playerMock = {
       currentBet: 0,
     }
-    bankerMock = {
-      rollDie: jest.fn().mockReturnValue(3),
-    }
-    gameController = new GameController(consoleUIMock, factoryMock, bankerMock)
+    gameController = new GameController(consoleUIMock, factoryMock, bankerMock, dieFactory)
   })
 
   test('startGameRound should be called', async () => {
@@ -136,7 +131,6 @@ describe('tests game rounds', () => {
 describe('tests with start menu choice 9 (quit)', () => {
   let consoleUIMock
   let gameController
-  let bankerMock
 
   beforeEach(() => {
     consoleUIMock = {
@@ -148,9 +142,6 @@ describe('tests with start menu choice 9 (quit)', () => {
       promptForBet: jest.fn().mockReturnValue('20'),
       closeInterface: jest.fn(),
       printBankersDieFaceValue: jest.fn(),
-    }
-    bankerMock = {
-      rollDie: jest.fn().mockReturnValue(3),
     }
     gameController = new GameController(consoleUIMock, {}, bankerMock)
   })
