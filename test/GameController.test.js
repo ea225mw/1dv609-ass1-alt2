@@ -75,6 +75,7 @@ describe('tests game rounds', () => {
       promptForBet: jest.fn().mockReturnValue('20'),
       closeInterface: jest.fn(),
       printBankersDieFaceValue: jest.fn(),
+      promptPlayerToRollDie: jest.fn(),
     }
     factoryMock = {
       create: jest.fn().mockReturnValue({mockPlayer: true}),
@@ -119,10 +120,15 @@ describe('tests game rounds', () => {
     expect(consoleUIMock.printBankersDieFaceValue).toHaveBeenCalledWith(3)
   })
 
-  test('should let players roll the die', async () => {
+  test('letPlayerRollDie() should be called', async () => {
     const spy = jest.spyOn(GameController.prototype, 'letPlayersRollDie')
     await gameController.run()
     expect(spy).toHaveBeenCalled()
+  })
+
+  test('ConsolUI.promptPlayerToRollDie() should have been called', async () => {
+    await gameController.run()
+    expect(consoleUIMock.promptPlayerToRollDie).toHaveBeenCalled()
   })
 })
 
@@ -137,11 +143,7 @@ describe('tests with start menu choice 9 (quit)', () => {
       printGameBanner: jest.fn(),
       printStartMenu: jest.fn().mockResolvedValue('9'),
       printQuittingMessage: jest.fn(),
-      promptForNumberOfPlayers: jest.fn().mockResolvedValue('2'),
-      promptForPlayerNames: jest.fn().mockResolvedValue(['John', 'Lisa']),
-      promptForBet: jest.fn().mockReturnValue('20'),
       closeInterface: jest.fn(),
-      printBankersDieFaceValue: jest.fn(),
     }
     gameController = new GameController(consoleUIMock, {}, bankerMock)
   })
