@@ -49,6 +49,15 @@ export class ConsoleUI {
     console.log(`\nBanker rolls the die... ...and the value is: ${faceValue}\n`)
   }
 
+  async promptPlayerToRollDie(player) {
+    let rollCommand = ''
+
+    while (rollCommand !== 'r') {
+      rollCommand = await this.rl.question(`OK ${player.getName()}, roll the die! (r + Enter) `)
+    }
+    return player.roll()
+  }
+
   closeInterface() {
     this.rl.close()
   }

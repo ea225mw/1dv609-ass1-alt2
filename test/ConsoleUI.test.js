@@ -56,3 +56,17 @@ test('closeInterface() should be called', () => {
   consoleUI.closeInterface()
   expect(rlMock.close).toHaveBeenCalled()
 })
+
+test('promptPlayerToRollDie() should return face value of 5', async () => {
+  const playerMock = {
+    getName: jest.fn().mockResolvedValue('John'),
+    roll: jest.fn().mockReturnValue(5),
+  }
+  const rlMock = {
+    question: jest.fn().mockResolvedValueOnce('r'),
+  }
+
+  const consoleUI = new ConsoleUI(rlMock)
+  const faceValue = await consoleUI.promptPlayerToRollDie(playerMock)
+  expect(faceValue).toBe(5)
+})
