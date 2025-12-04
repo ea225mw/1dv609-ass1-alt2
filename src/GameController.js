@@ -63,7 +63,9 @@ export class GameController {
     }
     const bankersFaceValue = this.letBankerRollDie()
     this.printBankersDieFaceValue(bankersFaceValue)
-    this.letPlayersRollDie()
+    for (const player of this.#players) {
+      this.letPlayersRollDie(player)
+    }
   }
 
   async letPlayerPlaceBet(player) {
@@ -79,7 +81,8 @@ export class GameController {
     this.#consoleUI.printBankersDieFaceValue(faceValue)
   }
 
-  letPlayersRollDie() {
+  letPlayersRollDie(player) {
+    this.#consoleUI.promptPlayerToRollDie(player)
     // 1. ConsoleUI.offerPlayerToRollDie()
     // 2. Evaluate if it's a win or lose.
     // 3.

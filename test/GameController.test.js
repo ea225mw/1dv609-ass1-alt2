@@ -19,6 +19,7 @@ describe('tests for the startup of the game', () => {
       promptForBet: jest.fn().mockReturnValue('20'),
       closeInterface: jest.fn(),
       printBankersDieFaceValue: jest.fn(),
+      promptPlayerToRollDie: jest.fn(),
     }
     factoryMock = {
       create: jest.fn().mockReturnValue({mockPlayer: true}),
@@ -128,7 +129,7 @@ describe('tests game rounds', () => {
 
   test('ConsolUI.promptPlayerToRollDie() should have been called', async () => {
     await gameController.run()
-    expect(consoleUIMock.promptPlayerToRollDie).toHaveBeenCalled()
+    expect(consoleUIMock.promptPlayerToRollDie).toHaveBeenCalledTimes(2)
   })
 })
 
